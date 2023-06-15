@@ -1,6 +1,6 @@
-import { Component, NgModule } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormsModule } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import axios from 'axios';
 
 @Component({
@@ -10,18 +10,26 @@ import axios from 'axios';
 })
 export class RegisterComponent {
   constructor(private router: Router){}
+  registerForm = new FormGroup({
+    username: new FormControl(''),
+    email: new FormControl(''),
+    password: new FormControl('')
+
+  });
+
   navToLogin(){
     this.router.navigateByUrl('/login')
   }
   back(){
     this.navToLogin();
   }
-  register(registerForm: FormGroup) : void{
-    this.sendRequest(registerForm.value.username, registerForm.value.email, registerForm.value.password);
-
+  register() : void{
+    console.warn(this.registerForm.value);
+    this.sendRequest(this.registerForm.value.email, this.registerForm.value.username, this.registerForm.value.password);
+    
   }
 
-  async sendRequest(username: string, email: string, password: string, ){
+  async sendRequest(username: string | null | undefined, email: string | null | undefined, password: string | null | undefined){
     try{
       const url = 'http://localhost:8080/api/auth/register'
       const data = {
@@ -29,7 +37,11 @@ export class RegisterComponent {
         'email': email,
         'password': password
       };
-      const response = await axios.post(url,data);
+      const response = await axios.post(url,data, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
       console.log(response.data);
     }catch (error){
       console.error(error);
