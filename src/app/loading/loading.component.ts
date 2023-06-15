@@ -29,7 +29,7 @@ export class LoadingComponent implements OnInit {
     "Enabling secure password storage and retrieval",
     "Implementing secure authentication for mobile and web applications",
   ];
-  lala: string = "gfgdf";
+  lala: string = "";
   ngOnInit() {
     this.rotateText();
   }

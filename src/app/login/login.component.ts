@@ -11,8 +11,15 @@ export class LoginComponent {
   navToLoading(){
     this.router.navigateByUrl('/loading');
   }
+  navToRegister(){
+    this.router.navigateByUrl('/register');
+  }
   submit() {
     this.navToLoading();
   }
+  register(){
+    this.navToRegister();
+  }
+
 
 }
