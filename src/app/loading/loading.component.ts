@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-loading',
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.less']
 })
 export class LoadingComponent implements OnInit {
+  constructor(private http: HttpClient, private router: Router) {}
+
   
   lalaList: string[] = [
     "Implementing secure authentication mechanisms",
@@ -30,8 +33,25 @@ export class LoadingComponent implements OnInit {
     "Implementing secure authentication for mobile and web applications",
   ];
   lala: string = "";
+  lalaTimes: number = 5
   ngOnInit() {
-    this.rotateText();
+    for (let i = 0; i <= this.lalaTimes; i++) {
+      if(i < 4){
+        this.rotateText();
+      } else {
+        this.http.get('http://localhost:8080/callback/loading', {responseType: 'text'}).subscribe(
+          (response: any) => {
+            const uri = response; // Adjust this based on the server response structure
+            window.location.href = uri;
+          },
+          (error: any) => {
+            console.error('Failed to retrieve the resource:', error);
+          }
+        );
+
+      }
+      
+    }
   }
 
   rotateText() {

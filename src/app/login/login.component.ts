@@ -40,6 +40,7 @@ export class LoginComponent {
         }
       });
       console.log(response.data);
+      this.router.navigate(["/loading"]);
     }catch (error){
       console.error(error);
 
