@@ -10,6 +10,9 @@ import { LoginComponent } from './login/login.component';
 import { BackgroundComponent } from './background/background.component';
 import { LoadingComponent } from './loading/loading.component';
 import { RegisterComponent } from './register/register.component';
+import { LocalService } from './local.service';
+import { AuthService } from './auth.service';
+
 
 
 @NgModule({
@@ -18,16 +21,19 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     BackgroundComponent,
     LoadingComponent,
-    RegisterComponent
+    RegisterComponent,
+  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    
+    
     
   ],
-  providers: [],
+  providers: [LocalService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { LocalService } from './local.service';
+import { AuthService } from './auth.service';
+
 
 
 @Component({
@@ -8,5 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
+  constructor(private store: LocalService, private auth: AuthService){
+
+  }
   title = 'collageifyFrontend';
 }

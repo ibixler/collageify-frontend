@@ -6,7 +6,7 @@
       <form [formGroup]="registerForm" (ngSubmit)="register()">
         <div class="form-group">
             <label for="email">email</label>
-            <input type="text" id="email" formControlName="username" class="form-control" placeholder="Enter your email" >
+            <input type="text" id="email" formControlName="email" class="form-control" placeholder="Enter your email" >
         </div>
         <div class="form-group">
             <label for="username">Username</label>
@@ -14,12 +14,12 @@
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password" formControlName="username" class="form-control" placeholder="Enter your password" >
+            <input type="password" id="password" formControlName="password" class="form-control" placeholder="Enter your password" >
         </div>
         <div class="controls">
           <button type="submit" class="btn btn-primary" (click)="register()" >Sign Up</button>
           <button type="bu" class="btn btn-primary" (click)="back()">Back</button>
-
+          <button></button>
         </div>
       </form>
     </div>

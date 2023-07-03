@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { LocalService } from '../local.service';
+import { AuthService } from '../auth.service';
+import { tap, catchError } from 'rxjs/operators';
 @Component({
   selector: 'app-loading',
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.less']
 })
 export class LoadingComponent implements OnInit {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private store: LocalService, private auth: AuthService) {}
 
   
   lalaList: string[] = [
@@ -39,7 +42,19 @@ export class LoadingComponent implements OnInit {
       if(i < 4){
         this.rotateText();
       } else {
-        this.http.get('http://localhost:8080/callback/loading', {responseType: 'text'}).subscribe(
+        const request = this.auth.makeRequest('callback/loading');
+        request.pipe(
+          tap((response) => {
+            // Handle the successful response
+            console.log('Response:', response);
+          }),
+          catchError((error) => {
+            // Handle the error response
+            console.error('Error:', error);
+            throw error; // Rethrow the error to propagate it further
+          })
+        ).subscribe()
+        /* this.http.get('http://localhost:8080/callback/loading', {responseType: 'text'}).subscribe(
           (response: any) => {
             const uri = response; // Adjust this based on the server response structure
             window.location.href = uri;
@@ -47,7 +62,7 @@ export class LoadingComponent implements OnInit {
           (error: any) => {
             console.error('Failed to retrieve the resource:', error);
           }
-        );
+        ); */
 
       }
       
