@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { LocalService } from './local.service';
-import { AuthService } from './auth.service';
 
 
 
@@ -10,7 +9,7 @@ import { AuthService } from './auth.service';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  constructor(private store: LocalService, private auth: AuthService){
+  constructor(private store: LocalService){
 
   }
   title = 'collageifyFrontend';

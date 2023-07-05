@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import axios from 'axios';
 import { LocalService } from '../local.service';
-import { AuthService } from '../auth.service';
 import { tap, catchError } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt'; // Import JwtHelperService
+
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-loading',
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.less']
 })
 export class LoadingComponent implements OnInit {
-  constructor(private http: HttpClient, private router: Router, private store: LocalService, private auth: AuthService) {}
+  constructor( private router: Router , private store: Storage) {}
 
   
   lalaList: string[] = [
@@ -37,23 +40,44 @@ export class LoadingComponent implements OnInit {
   ];
   lala: string = "";
   lalaTimes: number = 5
-  ngOnInit() {
+  async ngOnInit() {
     for (let i = 0; i <= this.lalaTimes; i++) {
       if(i < 4){
         this.rotateText();
       } else {
-        const request = this.auth.makeRequest('callback/loading');
-        request.pipe(
-          tap((response) => {
-            // Handle the successful response
-            console.log('Response:', response);
-          }),
-          catchError((error) => {
-            // Handle the error response
-            console.error('Error:', error);
-            throw error; // Rethrow the error to propagate it further
-          })
-        ).subscribe()
+        try{
+          await this.store.create().then(() => {
+            this.store.get('token').then((token) => {
+              const headers = { 'Authorization': `Bearer ${token}` }
+              console.log(headers);
+              console.log('token!' + token);
+  
+              const response = axios.get('http://localhost:8080/callback/loading', { headers, withCredentials: true }).then(
+                response => {
+                  const uri = response.data;
+                  window.location.href = uri;
+                }
+              ); // Include the token in the request headers
+              
+                /* .pipe(
+                  tap((response) => {
+                    console.log('Response:', response);
+                  }),
+                  catchError((error) => {
+                    // Handle the error response
+                    console.
+                    error('Error:', error);
+                    throw error; // Rethrow the error to propagate it further
+                  })
+                )
+                .subscribe(); */
+                });
+              })
+
+        } catch (error){
+          console.log(error)
+        }
+        
         /* this.http.get('http://localhost:8080/callback/loading', {responseType: 'text'}).subscribe(
           (response: any) => {
             const uri = response; // Adjust this based on the server response structure

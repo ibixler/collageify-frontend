@@ -8,7 +8,8 @@ import { LocalService } from './local.service';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private store: LocalService) { }
+  constructor(private http: HttpClient, 
+    private store: LocalService) { }
   makeRequest(path: string): Observable<any> {
     const url = 'http://localhost:8080/' + path;
     const token = this.store.getData("token");
