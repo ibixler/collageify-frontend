@@ -57,22 +57,9 @@ export class LoadingComponent implements OnInit {
                   const uri = response.data;
                   window.location.href = uri;
                 }
-              ); // Include the token in the request headers
-              
-                /* .pipe(
-                  tap((response) => {
-                    console.log('Response:', response);
-                  }),
-                  catchError((error) => {
-                    // Handle the error response
-                    console.
-                    error('Error:', error);
-                    throw error; // Rethrow the error to propagate it further
-                  })
-                )
-                .subscribe(); */
-                });
-              })
+                );
+              });
+            })
 
         } catch (error){
           console.log(error)

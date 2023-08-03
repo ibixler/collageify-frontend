@@ -25,13 +25,13 @@ export class RegisterComponent {
   }
   register() : void{
     console.warn(this.registerForm.value);
-    this.sendRequest(this.registerForm.value.email, this.registerForm.value.username, this.registerForm.value.password);
+    this.sendRequest(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password);
     
   }
 
   async sendRequest(username: string | null | undefined, email: string | null | undefined, password: string | null | undefined){
     try{
-      const url = 'http://localhost:8080/api/auth/register'
+      const url = 'http://localhost:8080/api/login/register'
       const data = {
         'username': username,
         'email': email,

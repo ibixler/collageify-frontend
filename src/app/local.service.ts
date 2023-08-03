@@ -19,7 +19,7 @@ export class LocalService {
   }
   public clearData() {
     localStorage.clear();
-  }
+  } 
   private encrypt(txt: string): string {
     return CryptoJS.AES.encrypt(txt, this.key).toString();
   }

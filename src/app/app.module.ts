@@ -13,6 +13,7 @@ import { BackgroundComponent } from './background/background.component';
 import { LoadingComponent } from './loading/loading.component';
 import { RegisterComponent } from './register/register.component';
 import { LocalService } from './local.service';
+import { CallbackComponent } from './callback/callback.component';
 
 export function jwtOptionsFactory(storage: Storage) {
   return {
@@ -30,6 +31,7 @@ export function jwtOptionsFactory(storage: Storage) {
     BackgroundComponent,
     LoadingComponent,
     RegisterComponent,
+    CallbackComponent,
   
   ],
   imports: [

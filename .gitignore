@@ -40,3 +40,21 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+ts-implementation/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs
+ts-implementation/obj/ts-implementation.csproj.nuget.dgspec.json
+colageify-web-client.sln
+ts-implementation/ts-implementation.csproj
+ts-implementation/Program.cs
+ts-implementation/appsettings.Development.json
+ts-implementation/appsettings.json
+ts-implementation/obj/project.assets.json
+ts-implementation/obj/project.nuget.cache
+ts-implementation/obj/ts-implementation.csproj.nuget.g.props
+ts-implementation/obj/ts-implementation.csproj.nuget.g.targets
+ts-implementation/obj/Debug/net7.0/ts-implementation.AssemblyInfo.cs
+ts-implementation/obj/Debug/net7.0/ts-implementation.AssemblyInfoInputs.cache
+ts-implementation/obj/Debug/net7.0/ts-implementation.assets.cache
+ts-implementation/obj/Debug/net7.0/ts-implementation.csproj.AssemblyReference.cache
+ts-implementation/obj/Debug/net7.0/ts-implementation.GeneratedMSBuildEditorConfig.editorconfig
+ts-implementation/obj/Debug/net7.0/ts-implementation.GlobalUsings.g.cs
+ts-implementation/Properties/launchSettings.json
